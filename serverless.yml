@@ -1,5 +1,4 @@
 service: serverless-nodejs-api
-frameworkVersion: '3'
 useDotenv: true
 
 provider:
@@ -10,16 +9,15 @@ provider:
     STAGE: ${env:STAGE, "prod"}
   iam:
     role:
-      name: serverless-my-ssm-role-${env:STAGE, "prod"}
       statements:
-        - Effect: 'Allow'
-          Resource: '*'
+        - Effect: Allow
+          Resource: "*"
           Action:
-            - "ssm:GetParameter"
-            - "ssm:GetParameters"
-            - "ssm:GetParametersByPath"
-            - "ssm:GetParameterHistory"
-            - "ssm:DescribeParameters"
+            - ssm:GetParameter
+            - ssm:GetParameters
+            - ssm:GetParametersByPath
+            - ssm:GetParameterHistory
+            - ssm:DescribeParameters
 
 functions:
   api:
@@ -28,6 +26,10 @@ functions:
       - httpApi: '*'
 
 custom:
+  esbuild:
+    bundle: true
+    minify: true
+    packager: pnpm
   dotenv:
     exclude:
       - AWS_ACCESS_KEY_ID
@@ -36,5 +38,6 @@ custom:
       - DATABASE_URL
 
 plugins:
+  - serverless-esbuild
   - serverless-offline
   - serverless-dotenv-plugin

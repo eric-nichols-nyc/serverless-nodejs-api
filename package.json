@@ -4,11 +4,11 @@
   "description": "",
   "scripts": {
     "dev": "serverless offline --stage dev",
-    "info": "serverless info --stage prod --region us-east-2",
-    "deploy": "serverless deploy --stage prod --region us-east-2",
-    "deploy-dev-stage": "serverless deploy --stage dev --region us-east-2",
-    "info-dev-stage": "serverless info --stage prod --region us-east-2",
-    "remove": "serverless remove --stage prod --region us-east-2",
+    "info": "serverless info --stage prod --region us-east-1",
+    "deploy": "serverless deploy --stage prod --region us-east-1",
+    "deploy-dev-stage": "serverless deploy --stage dev --region us-east-1",
+    "info-dev-stage": "serverless info --stage prod --region us-east-1",
+    "remove": "serverless remove --stage prod --region us-east-1",
     "generate": "drizzle-kit generate:pg --config=drizzle.config.js",
     "migrate": "tsx src/cli/migrator.js",
     "vercel-build": "echo 'hello'"
@@ -22,6 +22,9 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "esbuild": "^0.24.0",
+    "serverless": "^3.38.0",
+    "serverless-esbuild": "^1.52.0",
     "dotenv": "^16.4.1",
     "drizzle-kit": "^0.20.13",
     "serverless-dotenv-plugin": "^6.0.0",
